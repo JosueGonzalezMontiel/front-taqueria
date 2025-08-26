@@ -1,0 +1,2193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sr.Taco - Auténticos Tacos Mexicanos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content shadow-lg border-0">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title">
+                        <i class="fas fa-user-circle me-2"></i>Iniciar Sesión - Sr.Taco
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="password" required>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="remember">
+                            <label class="form-check-label" for="remember">Recordarme</label>
+                        </div>
+                        <button type="submit" class="btn btn-dark w-100 mb-2">Iniciar Sesión</button>
+                        <button type="button" class="btn btn-outline-dark w-100">Crear Cuenta</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h4><i class="fas fa-pepper-hot me-2"></i>Sr.Taco</h4>
+            <button class="btn btn-sm btn-outline-light" id="closeSidebar">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <nav class="sidebar-nav">
+        <!-- Gestión de Tienda con submenú -->
+        <a href="#" class="sidebar-link has-submenu" data-submenu="gestion">
+            <i class="fas fa-store me-2"></i>Gestión de Tienda
+        </a>
+        <div class="sidebar-submenu" id="gestion-submenu">
+            <a href="#" class="sidebar-link" data-section="almacenes">
+                <i class="fas fa-boxes me-2"></i>Almacenes
+            </a>
+            <a href="#" class="sidebar-link" data-section="gastos">
+                <i class="fas fa-receipt me-2"></i>Gastos
+            </a>
+            <a href="#" class="sidebar-link" data-section="ventas">
+                <i class="fas fa-chart-line me-2"></i>Ventas
+            </a>
+        </div>
+
+        <!-- Colaboradores con submenú -->
+        <a href="#" class="sidebar-link has-submenu" data-submenu="colaboradores">
+            <i class="fas fa-users me-2"></i>Colaboradores
+        </a>
+        <div class="sidebar-submenu" id="colaboradores-submenu">
+            <a href="#" class="sidebar-link" data-section="trabajadores">
+                <i class="fas fa-user-tie me-2"></i>Trabajadores
+            </a>
+            <a href="#" class="sidebar-link" data-section="asistencias">
+                <i class="fas fa-clock me-2"></i>Asistencias
+            </a>
+            <a href="#" class="sidebar-link" data-section="pagos-colaboradores">
+                <i class="fas fa-money-bill me-2"></i>Pagos
+            </a>
+            <a href="#" class="sidebar-link" data-section="horarios">
+                <i class="fas fa-calendar me-2"></i>Horarios
+            </a>
+            <a href="#" class="sidebar-link" data-section="tareas">
+                <i class="fas fa-tasks me-2"></i>Tareas
+            </a>
+        </div>
+
+        <a href="#" class="sidebar-link" data-section="clientes">
+            <i class="fas fa-users me-2"></i>Clientes
+        </a>
+        <a href="#" class="sidebar-link" data-section="menu">
+            <i class="fas fa-utensils me-2"></i>Menú
+        </a>
+        <a href="#" class="sidebar-link" data-section="empresa">
+            <i class="fas fa-building me-2"></i>Acerca de la Empresa
+        </a>
+        <a href="#" class="sidebar-link" data-section="cuenta">
+            <i class="fas fa-user-circle me-2"></i>Mi Cuenta
+        </a>
+        <a href="#" class="sidebar-link" data-section="home">
+            <i class="fas fa-home me-2"></i>Inicio
+        </a>
+        <a href="#" class="sidebar-link" data-section="chatbot">
+            <i class="fas fa-comments me-2"></i>Chatbot
+        </a>
+    </nav>
+</div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <!-- Header -->
+        <header class="header">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-auto">
+                        <button class="btn btn-dark" id="toggleSidebar">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                    </div>
+                    <div class="col">
+                        <h1 class="h3 mb-0">Sr.Taco - Auténticos Tacos Mexicanos</h1>
+                    </div>
+                    <div class="col-auto">
+                        <button class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#loginModal">
+                            <i class="fas fa-sign-in-alt me-1"></i>Iniciar Sesión
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Home Section -->
+        <section id="home" class="content-section active">
+            <!-- Hero Carousel -->
+            <div id="heroCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
+                    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+                    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="carousel-bg" style="background-image: url('/placeholder.svg?height=500&width=1200');">
+                            <div class="carousel-caption">
+                                <div class="container">
+                                    <h2 class="display-4 fw-bold">Bienvenido a Sr.Taco</h2>
+                                    <p class="lead">Los mejores tacos auténticos mexicanos de la ciudad</p>
+                                    <button class="btn btn-light btn-lg">Ver Menú</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="carousel-bg" style="background-image: url('/placeholder.svg?height=500&width=1200');">
+                            <div class="carousel-caption">
+                                <div class="container">
+                                    <h2 class="display-4 fw-bold">Ingredientes Frescos</h2>
+                                    <p class="lead">Preparados diariamente con los mejores ingredientes</p>
+                                    <button class="btn btn-light btn-lg">Conoce Más</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="carousel-bg" style="background-image: url('/placeholder.svg?height=500&width=1200');">
+                            <div class="carousel-caption">
+                                <div class="container">
+                                    <h2 class="display-4 fw-bold">Ordena Ahora</h2>
+                                    <p class="lead">Para llevar, delivery o disfruta en nuestro local</p>
+                                    <button class="btn btn-light btn-lg">Hacer Pedido</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+            </div>
+
+            <!-- Services Section -->
+            <div class="container mb-5">
+                <h2 class="text-center mb-4">¿Cómo Prefieres Ordenar?</h2>
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="fas fa-store"></i>
+                            </div>
+                            <h4>En Caja</h4>
+                            <p>Visítanos y ordena directamente en nuestro mostrador. Atención personalizada y rápida.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="fas fa-shopping-bag"></i>
+                            </div>
+                            <h4>Para Llevar</h4>
+                            <p>Ordena por teléfono y recoge tu pedido. Perfecto para disfrutar en casa.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <h4>Por la App</h4>
+                            <p>Descarga nuestra app y ordena desde donde estés. Delivery disponible.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Branches Section -->
+            <div class="container mb-5">
+                <h2 class="text-center mb-4">Nuestras Sucursales</h2>
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="branch-card">
+                            <h4><i class="fas fa-map-marker-alt me-2"></i>Sucursal Centro</h4>
+                            <p><strong>Dirección:</strong> Av. Principal 123, Centro</p>
+                            <p><strong>Teléfono:</strong> (555) 123-4567</p>
+                            <p><strong>Horario:</strong> Lun-Dom 10:00 AM - 10:00 PM</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="branch-card">
+                            <h4><i class="fas fa-map-marker-alt me-2"></i>Sucursal Norte</h4>
+                            <p><strong>Dirección:</strong> Blvd. Norte 456, Col. Moderna</p>
+                            <p><strong>Teléfono:</strong> (555) 987-6543</p>
+                            <p><strong>Horario:</strong> Lun-Dom 11:00 AM - 11:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="container mb-5">
+                <h2 class="text-center mb-4">Preguntas Frecuentes</h2>
+                <div class="accordion" id="faqAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                ¿Cuál es el tiempo de entrega?
+                            </button>
+                        </h2>
+                        <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                El tiempo de entrega promedio es de 25-35 minutos, dependiendo de tu ubicación y la demanda del momento.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                ¿Tienen opciones vegetarianas?
+                            </button>
+                        </h2>
+                        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Sí, tenemos una variedad de opciones vegetarianas incluyendo tacos de frijoles, nopales, y queso.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                ¿Aceptan tarjetas de crédito?
+                            </button>
+                        </h2>
+                        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Sí, aceptamos todas las tarjetas de crédito y débito principales, así como pagos en efectivo.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- About Section -->
+            <div class="about-section">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <h2>Sobre Nosotros</h2>
+                            <p class="lead">Sr.Taco nació de la pasión por compartir los auténticos sabores mexicanos con nuestra comunidad.</p>
+                            <p>Desde 2010, hemos estado sirviendo tacos preparados con recetas tradicionales y ingredientes frescos de la más alta calidad. Nuestro compromiso es brindar una experiencia gastronómica única que te transporte directamente a México.</p>
+                        </div>
+                        <div class="col-md-6">
+                            <img src="/placeholder.svg?height=300&width=400" alt="Sobre Sr.Taco" class="img-fluid rounded shadow">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trabajadores Section -->
+        <section id="trabajadores" class="content-section">
+            <div class="container-fluid">
+                <div class="section-header">
+                    <h2><i class="fas fa-user-tie me-2"></i>Gestión de Trabajadores</h2>
+                    <p class="mb-0">Administración del personal del restaurante</p>
+                </div>
+                
+                <!-- Dashboard Cards para Trabajadores -->
+                <div class="row g-4 mb-4">
+                    <div class="col-md-3">
+                        <div class="dashboard-card">
+                            <div class="dashboard-icon bg-primary">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="dashboard-info">
+                                <h3 id="totalTrabajadores">0</h3>
+                                <p>Total Trabajadores</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="dashboard-card">
+                            <div class="dashboard-icon bg-success">
+                                <i class="fas fa-user-check"></i>
+                            </div>
+                            <div class="dashboard-info">
+                                <h3 id="trabajadoresActivos">0</h3>
+                                <p>Activos</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="dashboard-card">
+                            <div class="dashboard-icon bg-info">
+                                <i class="fas fa-briefcase"></i>
+                            </div>
+                            <div class="dashboard-info">
+                                <h3 id="puestosPrincipales">-</h3>
+                                <p>Puesto Principal</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="dashboard-card">
+                            <div class="dashboard-icon bg-warning">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <div class="dashboard-info">
+                                <h3 id="documentosCompletos">0</h3>
+                                <p>Docs Completos</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row g-4">
+                    <div class="col-12">
+                        <div class="management-card">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h4><i class="fas fa-users me-2"></i>Lista de Trabajadores</h4>
+                                <button class="btn btn-primary" onclick="openTrabajadorModal()">
+                                    <i class="fas fa-plus me-1"></i>Agregar Trabajador
+                                </button>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Nombre</th>
+                                            <th>Apellidos</th>
+                                            <th>Puesto</th>
+                                            <th>Fecha Nacimiento</th>
+                                            <th>Documentos</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="trabajadoresTable">
+                                        <tr>
+                                            <td colspan="7" class="text-center">
+                                                <div class="spinner-border" role="status">
+                                                    <span class="visually-hidden">Cargando...</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Almacenes Section -->
+        <section id="almacenes" class="content-section">
+            <div class="container-fluid">
+                <div class="section-header">
+                    <h2><i class="fas fa-boxes me-2"></i>Gestión de Almacenes</h2>
+                    <p class="mb-0">Control de inventario y stock de productos</p>
+                </div>
+                
+                <!-- Dashboard Cards para Almacenes -->
+                <div class="row g-4 mb-4">
+                    <div class="col-md-3">
+                        <div class="dashboard-card">
+                            <div class="dashboard-icon bg-primary">
+                                <i class="fas fa-cubes"></i>
+                            </div>
+                            <div class="dashboard-info">
+                                <h3 id="totalProductosAlmacen">0</h3>
+                                <p>Total Productos</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="dashboard-card">
+                            <div class="dashboard-icon bg-success">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="dashboard-info">
+                                <h3 id="productosDisponibles">0</h3>
+                                <p>Disponibles</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="dashboard-card">
+                            <div class="dashboard-icon bg-info">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="dashboard-info">
+                                <h3 id="productosPorAgotarse">0</h3>
+                                <p>Por Agotarse</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="dashboard-card">
+                            <div class="dashboard-icon bg-warning">
+                                <i class="fas fa-truck"></i>
+                            </div>
+                            <div class="dashboard-info">
+                                <h3 id="ultimosIngresos">-</h3>
+                                <p>Últimos Ingresos</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row g-4">
+                    <div class="col-12">
+                        <div class="management-card">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h4><i class="fas fa-warehouse me-2"></i>Inventario Actual</h4>
+                                <button class="btn btn-primary" onclick="openAlmacenModal()">
+                                    <i class="fas fa-plus me-1"></i>Agregar Producto
+                                </button>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Producto</th>
+                                            <th>Unidades</th>
+                                            <th>Tipo</th>
+                                            <th>Responsable</th>
+                                            <th>Estado</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="almacenesTable">
+                                        <tr>
+                                            <td colspan="7" class="text-center">
+                                                <div class="spinner-border" role="status">
+                                                    <span class="visually-hidden">Cargando...</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gastos Section -->
+        <section id="gastos" class="content-section">
+            <div class="container-fluid">
+                <div class="section-header">
+                    <h2><i class="fas fa-receipt me-2"></i>Gestión de Gastos</h2>
+                    <p class="mb-0">Control de gastos operativos del restaurante</p>
+                </div>
+                
+                <!-- Dashboard Cards para Gastos -->
+                <div class="row g-4 mb-4">
+                    <div class="col-md-3">
+                        <div class="dashboard-card">
+                            <div class="dashboard-icon bg-primary">
+                                <i class="fas fa-money-bill-alt"></i>
+                            </div>
+                            <div class="dashboard-info">
+                                <h3 id="totalGastos">$0</h3>
+                                <p>Total Gastos</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="dashboard-card">
+                            <div class="dashboard-icon bg-success">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="dashboard-info">
+                                <h3 id="promedioGastos">$0</h3>
+                                <p>Promedio Diario</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="dashboard-card">
+                            <div class="dashboard-icon bg-info">
+                                <i class="fas fa-tags"></i>
+                            </div>
+                            <div class="dashboard-info">
+                                <h3 id="gastoPrincipal">-</h3>
+                                <p>Gasto Principal</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="dashboard-card">
+                            <div class="dashboard-icon bg-warning">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <div class="dashboard-info">
+                                <h3 id="gastosMesActual">$0</h3>
+                                <p>Este Mes</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row g-4">
+                    <div class="col-12">
+                        <div class="management-card">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h4><i class="fas fa-chart-pie me-2"></i>Registro de Gastos</h4>
+                                <button class="btn btn-primary" onclick="openGastoModal()">
+                                    <i class="fas fa-plus me-1"></i>Nuevo Gasto
+                                </button>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Fecha</th>
+                                            <th>Producto</th>
+                                            <th>Unidades</th>
+                                            <th>Costo</th>
+                                            <th>Tipo</th>
+                                            <th>Responsable</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="gastosTable">
+                                        <tr>
+                                            <td colspan="8" class="text-center">
+                                                <div class="spinner-border" role="status">
+                                                    <span class="visually-hidden">Cargando...</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Asistencias Section -->
+        <section id="asistencias" class="content-section">
+            <div class="container-fluid">
+                <div class="section-header">
+                    <h2><i class="fas fa-clock me-2"></i>Control de Asistencias</h2>
+                    <p class="mb-0">Registro de entrada y salida de colaboradores</p>
+                </div>
+                
+                <!-- Dashboard Cards para Asistencias -->
+                <div class="row g-4 mb-4">
+                    <div class="col-md-3">
+                        <div class="dashboard-card">
+                            <div class="dashboard-icon bg-primary">
+                                <i class="fas fa-user-clock"></i>
+                            </div>
+                            <div class="dashboard-info">
+                                <h3 id="totalAsistencias">0</h3>
+                                <p>Total Asistencias</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="dashboard-card">
+                            <div class="dashboard-icon bg-success">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="dashboard-info">
+                                <h3 id="asistenciasCompletas">0</h3>
+                                <p>Completas</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="dashboard-card">
+                            <div class="dashboard-icon bg-info">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="dashboard-info">
+                                <h3 id="retrasos">0</h3>
+                                <p>Retrasos</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="dashboard-card">
+                            <div class="dashboard-icon bg-warning">
+                                <i class="fas fa-calendar-day"></i>
+                            </div>
+                            <div class="dashboard-info">
+                                <h3 id="promedioAsistencias">-</h3>
+                                <p>Promedio Diario</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row g-4">
+                    <div class="col-12">
+                        <div class="management-card">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h4><i class="fas fa-calendar-check me-2"></i>Registro de Asistencias</h4>
+                                <button class="btn btn-primary" onclick="openAsistenciaModal()">
+                                    <i class="fas fa-plus me-1"></i>Registrar Asistencia
+                                </button>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Trabajador</th>
+                                            <th>Fecha</th>
+                                            <th>Entrada</th>
+                                            <th>Salida</th>
+                                            <th>Retardo</th>
+                                            <th>Descuento</th>
+                                            <th>Mes</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="asistenciasTable">
+                                        <tr>
+                                            <td colspan="9" class="text-center">
+                                                <div class="spinner-border" role="status">
+                                                    <span class="visually-hidden">Cargando...</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pagos Colaboradores Section -->
+        <section id="pagos-colaboradores" class="content-section">
+            <div class="container-fluid">
+                <div class="section-header">
+                    <h2><i class="fas fa-money-bill me-2"></i>Pagos a Colaboradores</h2>
+                    <p class="mb-0">Gestión de nómina y pagos al personal</p>
+                </div>
+                
+                <!-- Dashboard Cards para Pagos -->
+                <div class="row g-4 mb-4">
+                    <div class="col-md-3">
+                        <div class="dashboard-card">
+                            <div class="dashboard-icon bg-primary">
+                                <i class="fas fa-hand-holding-usd"></i>
+                            </div>
+                            <div class="dashboard-info">
+                                <h3 id="totalPagos">$0</h3>
+                                <p>Total Pagado</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="dashboard-card">
+                            <div class="dashboard-icon bg-success">
+                                <i class="fas fa-check-double"></i>
+                            </div>
+                            <div class="dashboard-info">
+                                <h3 id="pagosCompletados">0</h3>
+                                <p>Pagados</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="dashboard-card">
+                            <div class="dashboard-icon bg-info">
+                                <i class="fas fa-hourglass-half"></i>
+                            </div>
+                            <div class="dashboard-info">
+                                <h3 id="pagosPendientes">0</h3>
+                                <p>Pendientes</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="dashboard-card">
+                            <div class="dashboard-icon bg-warning">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <div class="dashboard-info">
+                                <h3 id="promedioPago">$0</h3>
+                                <p>Pago Promedio</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row g-4">
+                    <div class="col-12">
+                        <div class="management-card">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h4><i class="fas fa-wallet me-2"></i>Historial de Pagos</h4>
+                                <button class="btn btn-primary" onclick="openPagoModal()">
+                                    <i class="fas fa-plus me-1"></i>Procesar Pago
+                                </button>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Trabajador</th>
+                                            <th>Puesto</th>
+                                            <th>Pago</th>
+                                            <th>Mes</th>
+                                            <th>Estado</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="pagosTable">
+                                        <tr>
+                                            <td colspan="7" class="text-center">
+                                                <div class="spinner-border" role="status">
+                                                    <span class="visually-hidden">Cargando...</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Horarios Section -->
+        <section id="horarios" class="content-section">
+            <div class="container-fluid">
+                <div class="section-header">
+                    <h2><i class="fas fa-calendar me-2"></i>Gestión de Horarios</h2>
+                    <p class="mb-0">Programación de turnos y horarios de trabajo</p>
+                </div>
+                
+                <!-- Dashboard Cards para Horarios -->
+                <div class="row g-4 mb-4">
+                    <div class="col-md-3">
+                        <div class="dashboard-card">
+                            <div class="dashboard-icon bg-primary">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="dashboard-info">
+                                <h3 id="totalHorasProgramadas">0</h3>
+                                <p>Total Horas</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="dashboard-card">
+                            <div class="dashboard-icon bg-success">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="dashboard-info">
+                                <h3 id="horariosCompletos">0</h3>
+                                <p>Horarios Cubiertos</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="dashboard-card">
+                            <div class="dashboard-icon bg-info">
+                                <i class="fas fa-user-clock"></i>
+                            </div>
+                            <div class="dashboard-info">
+                                <h3 id="trabajadoresConHorario">0</h3>
+                                <p>Con Horario</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="dashboard-card">
+                            <div class="dashboard-icon bg-warning">
+                                <i class="fas fa-calendar-week"></i>
+                            </div>
+                            <div class="dashboard-info">
+                                <h3 id="promedioHoras">-</h3>
+                                <p>Promedio Semanal</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row g-4">
+                    <div class="col-12">
+                        <div class="management-card">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h4><i class="fas fa-calendar-alt me-2"></i>Horarios Semanales</h4>
+                                <button class="btn btn-primary" onclick="openHorarioModal()">
+                                    <i class="fas fa-plus me-1"></i>Crear Horario
+                                </button>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th>Trabajador</th>
+                                            <th>Lunes</th>
+                                            <th>Martes</th>
+                                            <th>Miércoles</th>
+                                            <th>Jueves</th>
+                                            <th>Viernes</th>
+                                            <th>Sábado</th>
+                                            <th>Domingo</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="horariosTable">
+                                        <tr>
+                                            <td colspan="9" class="text-center">
+                                                <div class="spinner-border" role="status">
+                                                    <span class="visually-hidden">Cargando...</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tareas Section -->
+        <section id="tareas" class="content-section">
+            <div class="container-fluid">
+                <div class="section-header">
+                    <h2><i class="fas fa-tasks me-2"></i>Gestión de Tareas</h2>
+                    <p class="mb-0">Asignación y seguimiento de tareas del personal</p>
+                </div>
+                
+                <!-- Dashboard Cards para Tareas -->
+                <div class="row g-4 mb-4">
+                    <div class="col-md-3">
+                        <div class="dashboard-card">
+                            <div class="dashboard-icon bg-primary">
+                                <i class="fas fa-list-ul"></i>
+                            </div>
+                            <div class="dashboard-info">
+                                <h3 id="totalTareas">0</h3>
+                                <p>Total Tareas</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="dashboard-card">
+                            <div class="dashboard-icon bg-success">
+                                <i class="fas fa-check-square"></i>
+                            </div>
+                            <div class="dashboard-info">
+                                <h3 id="tareasCompletadas">0</h3>
+                                <p>Completadas</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="dashboard-card">
+                            <div class="dashboard-icon bg-info">
+                                <i class="fas fa-spinner"></i>
+                            </div>
+                            <div class="dashboard-info">
+                                <h3 id="tareasPendientes">0</h3>
+                                <p>Pendientes</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="dashboard-card">
+                            <div class="dashboard-icon bg-warning">
+                                <i class="fas fa-user-edit"></i>
+                            </div>
+                            <div class="dashboard-info">
+                                <h3 id="tareasAsignadas">-</h3>
+                                <p>Asignadas Hoy</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row g-4">
+                    <div class="col-12">
+                        <div class="management-card">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h4><i class="fas fa-list-check me-2"></i>Lista de Tareas</h4>
+                                <button class="btn btn-primary" onclick="openTareaModal()">
+                                    <i class="fas fa-plus me-1"></i>Nueva Tarea
+                                </button>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Trabajador</th>
+                                            <th>Puesto</th>
+                                            <th>Tarea</th>
+                                            <th>Turno</th>
+                                            <th>Estado</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tareasTable">
+                                        <tr>
+                                            <td colspan="7" class="text-center">
+                                                <div class="spinner-border" role="status">
+                                                    <span class="visually-hidden">Cargando...</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Clientes Section -->
+        <section id="clientes" class="content-section">
+            <div class="container-fluid">
+                <div class="section-header">
+                    <h2><i class="fas fa-users me-2"></i>Gestión de Clientes</h2>
+                    <p class="mb-0">Administración de la base de clientes</p>
+                </div>
+                
+                <!-- Dashboard Cards para Clientes -->
+                <div class="row g-4 mb-4">
+                    <div class="col-md-3">
+                        <div class="dashboard-card">
+                            <div class="dashboard-icon bg-primary">
+                                <i class="fas fa-user-friends"></i>
+                            </div>
+                            <div class="dashboard-info">
+                                <h3 id="totalClientes">0</h3>
+                                <p>Total Clientes</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="dashboard-card">
+                            <div class="dashboard-icon bg-success">
+                                <i class="fas fa-thumbs-up"></i>
+                            </div>
+                            <div class="dashboard-info">
+                                <h3 id="clientesFrecuentes">0</h3>
+                                <p>Frecuentes</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="dashboard-card">
+                            <div class="dashboard-icon bg-info">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="dashboard-info">
+                                <h3 id="clienteEstrella">-</h3>
+                                <p>Cliente Estrella</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="dashboard-card">
+                            <div class="dashboard-icon bg-warning">
+                                <i class="fas fa-bell"></i>
+                            </div>
+                            <div class="dashboard-info">
+                                <h3 id="nuevosClientes">0</h3>
+                                <p>Nuevos Este Mes</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row g-4">
+                    <div class="col-12">
+                        <div class="management-card">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h4><i class="fas fa-user-friends me-2"></i>Lista de Clientes</h4>
+                                <button class="btn btn-primary" onclick="openClienteModal()">
+                                    <i class="fas fa-plus me-1"></i>Agregar Cliente
+                                </button>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Nombre</th>
+                                            <th>Número</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="clientesTable">
+                                        <tr>
+                                            <td colspan="4" class="text-center">
+                                                <div class="spinner-border" role="status">
+                                                    <span class="visually-hidden">Cargando...</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Menu Section -->
+        <section id="menu" class="content-section">
+    <div class="container-fluid">
+        <div class="section-header">
+            <h2><i class="fas fa-utensils me-2"></i>Nuestro Menú</h2>
+            <p class="mb-0">Descubre nuestros deliciosos tacos auténticos</p>
+        </div>
+        
+        <!-- Dashboard Cards -->
+        <div class="row g-4 mb-4">
+            <div class="col-md-3">
+                <div class="dashboard-card">
+                    <div class="dashboard-icon bg-primary">
+                        <i class="fas fa-hamburger"></i>
+                    </div>
+                    <div class="dashboard-info">
+                        <h3 id="totalProductos">0</h3>
+                        <p>Total Productos</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="dashboard-card">
+                    <div class="dashboard-icon bg-success">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="dashboard-info">
+                        <h3 id="precioPromedio">$0</h3>
+                        <p>Precio Promedio</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="dashboard-card">
+                    <div class="dashboard-icon bg-info">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="dashboard-info">
+                        <h3 id="masPopular">-</h3>
+                        <p>Más Popular</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="dashboard-card">
+                    <div class="dashboard-icon bg-warning">
+                        <i class="fas fa-pepper-hot"></i>
+                    </div>
+                    <div class="dashboard-info">
+                        <h3 id="especialidades">0</h3>
+                        <p>Especialidades</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu Cards Container -->
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="management-card">
+                    <h4><i class="fas fa-utensils me-2"></i>Nuestros Productos</h4>
+                    <div class="row g-4" id="menuCards">
+                        <div class="col-12 text-center">
+                            <div class="spinner-border" role="status">
+                                <span class="visually-hidden">Cargando menú...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Cart Sidebar -->
+            <div class="col-lg-4">
+                <div class="cart-container">
+                    <div class="cart-header">
+                        <h5><i class="fas fa-shopping-cart me-2"></i>Mi Pedido</h5>
+                        <span class="cart-count-badge" id="cartCountBadge">0</span>
+                    </div>
+                    <div class="cart-items" id="cartItems">
+                        <div class="empty-cart">
+                            <i class="fas fa-shopping-cart"></i>
+                            <p>Tu carrito está vacío</p>
+                            <small>Agrega productos para comenzar tu pedido</small>
+                        </div>
+                    </div>
+                    <div class="cart-footer">
+                        <div class="cart-total">
+                            <strong>Total: $<span id="cartTotal">0.00</span></strong>
+                        </div>
+                        <button class="btn btn-primary w-100 mt-2" id="checkoutBtn" disabled>
+                            <i class="fas fa-credit-card me-2"></i>Proceder al Pago
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Admin Panel -->
+        <div class="management-card mt-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4><i class="fas fa-cog me-2"></i>Administrar Menú</h4>
+                <button class="btn btn-primary" onclick="openMenuModal()">
+                    <i class="fas fa-plus me-1"></i>Agregar Producto
+                </button>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Precio</th>
+                            <th>Descripción</th>
+                            <th>Ingredientes</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="menuTable">
+                        <tr>
+                            <td colspan="6" class="text-center">
+                                <div class="spinner-border" role="status">
+                                    <span class="visually-hidden">Cargando...</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <!-- Ventas Section -->
+        <section id="ventas" class="content-section">
+            <div class="container-fluid">
+                <div class="section-header">
+                    <h2><i class="fas fa-chart-line me-2"></i>Gestión de Ventas</h2>
+                    <p class="mb-0">Registro y análisis de ventas</p>
+                </div>
+                
+                <!-- Dashboard Cards para Ventas -->
+                <div class="row g-4 mb-4">
+                    <div class="col-md-3">
+                        <div class="dashboard-card">
+                            <div class="dashboard-icon bg-primary">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                            <div class="dashboard-info">
+                                <h3 id="totalVentas">$0</h3>
+                                <p>Total Ventas</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="dashboard-card">
+                            <div class="dashboard-icon bg-success">
+                                <i class="fas fa-arrow-up"></i>
+                            </div>
+                            <div class="dashboard-info">
+                                <h3 id="ventasHoy">$0</h3>
+                                <p>Ventas Hoy</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="dashboard-card">
+                            <div class="dashboard-icon bg-info">
+                                <i class="fas fa-chart-pie"></i>
+                            </div>
+                            <div class="dashboard-info">
+                                <h3 id="productoMasVendido">-</h3>
+                                <p>Más Vendido</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="dashboard-card">
+                            <div class="dashboard-icon bg-warning">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <div class="dashboard-info">
+                                <h3 id="ventasMes">$0</h3>
+                                <p>Este Mes</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row g-4">
+                    <div class="col-12">
+                        <div class="management-card">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h4><i class="fas fa-shopping-cart me-2"></i>Registro de Ventas</h4>
+                                <button class="btn btn-primary" onclick="openVentaModal()">
+                                    <i class="fas fa-plus me-1"></i>Nueva Venta
+                                </button>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Producto</th>
+                                            <th>Precio</th>
+                                            <th>Cliente</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="ventasTable">
+                                        <tr>
+                                            <td colspan="5" class="text-center">
+                                                <div class="spinner-border" role="status">
+                                                    <span class="visually-hidden">Cargando...</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Empresa Section -->
+        <section id="empresa" class="content-section">
+            <div class="container">
+                <h2 class="mb-5 text-center"><i class="fas fa-building me-2"></i>Acerca de Sr.Taco</h2>
+                
+                <div class="row g-5">
+                    <div class="col-md-4">
+                        <div class="company-card">
+                            <div class="company-icon">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <h4>Misión</h4>
+                            <p>Ofrecer auténticos tacos mexicanos preparados con ingredientes frescos y de calidad, brindando una experiencia gastronómica excepcional que conecte a nuestros clientes con la rica tradición culinaria de México.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="company-card">
+                            <div class="company-icon">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <h4>Visión</h4>
+                            <p>Ser la taquería líder en la región, reconocida por la calidad de nuestros productos, el excelente servicio al cliente y nuestro compromiso con la preservación de las tradiciones culinarias mexicanas.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="company-card">
+                            <div class="company-icon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <h4>Valores</h4>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success me-2"></i>Calidad</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Autenticidad</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Servicio</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Tradición</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Compromiso</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="company-description mt-5">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <h3>Nuestra Historia</h3>
+                            <p class="lead">Sr.Taco comenzó como un sueño familiar en 2010, cuando Don Roberto decidió compartir las recetas tradicionales que había heredado de su abuela.</p>
+                            <p>Lo que comenzó como un pequeño puesto de tacos se ha convertido en una cadena respetada que mantiene vivos los sabores auténticos de México. Cada taco que servimos lleva consigo décadas de tradición y el amor por la cocina mexicana.</p>
+                            <p>Hoy, con múltiples sucursales, seguimos comprometidos con la calidad, la frescura y el sabor que nos caracteriza desde el primer día.</p>
+                        </div>
+                        <div class="col-md-6">
+                            <img src="/placeholder.svg?height=400&width=500" alt="Historia de Sr.Taco" class="img-fluid rounded shadow">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mi Cuenta Section -->
+        <section id="cuenta" class="content-section">
+    <div class="container">
+        <div class="section-header">
+            <h2><i class="fas fa-user-circle me-2"></i>Mi Cuenta</h2>
+            <p class="mb-0">Gestiona tu información personal y configuración</p>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="account-card">
+                    <div class="account-avatar">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <h4>Perfil de Usuario</h4>
+                    <p>Administrador</p>
+                    <button class="btn btn-outline-primary">Editar Perfil</button>
+                </div>
+            </div>
+            
+            <div class="col-md-8">
+                <div class="account-card">
+                    <h4>Información Personal</h4>
+                    <form>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Nombre</label>
+                                <input type="text" class="form-control" value="Administrador">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" value="admin@srtaco.com">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Teléfono</label>
+                                <input type="tel" class="form-control" value="(555) 123-4567">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Puesto</label>
+                                <input type="text" class="form-control" value="Administrador General">
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row g-4 mt-2">
+            <div class="col-md-6">
+                <div class="account-card">
+                    <h4>Configuración</h4>
+                    <div class="form-check form-switch mb-3">
+                        <input class="form-check-input" type="checkbox" id="notifications" checked>
+                        <label class="form-check-label" for="notifications">
+                            Recibir notificaciones
+                        </label>
+                    </div>
+                    <div class="form-check form-switch mb-3">
+                        <input class="form-check-input" type="checkbox" id="darkMode">
+                        <label class="form-check-label" for="darkMode">
+                            Modo oscuro
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="account-card">
+                    <h4>Seguridad</h4>
+                    <button class="btn btn-outline-warning mb-2 w-100">
+                        <i class="fas fa-key me-2"></i>Cambiar Contraseña
+                    </button>
+                    <button class="btn btn-outline-info w-100">
+                        <i class="fas fa-shield-alt me-2"></i>Configurar 2FA
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <!-- Chatbot Section -->
+        <section id="chatbot" class="content-section">
+            <div class="container-fluid">
+                <div class="section-header">
+                    <h2><i class="fas fa-comments me-2"></i>Asistente Virtual Sr.Taco</h2>
+                    <p class="mb-0">Chatea con nuestro asistente virtual para resolver tus dudas</p>
+                </div>
+                
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="management-card">
+                            <div class="chat-container" id="chatContainer">
+                                <div class="chat-messages" id="chatMessages">
+                                    <div class="message bot-message">
+                                        <div class="message-content">
+                                            <i class="fas fa-robot me-2"></i>
+                                            ¡Hola! Soy el asistente virtual de Sr.Taco. ¿En qué puedo ayudarte hoy?
+                                        </div>
+                                        <div class="message-time">Ahora</div>
+                                    </div>
+                                </div>
+                                <div class="chat-input-container">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="chatInput" placeholder="Escribe tu mensaje...">
+                                        <button class="btn btn-primary" id="sendMessage">
+                                            <i class="fas fa-paper-plane"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <h5><i class="fas fa-pepper-hot me-2"></i>Sr.Taco</h5>
+                        <p>Auténticos tacos mexicanos desde 2010. Calidad, tradición y sabor en cada bocado.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Contacto</h5>
+                        <p><i class="fas fa-phone me-2"></i>(555) 123-4567</p>
+                        <p><i class="fas fa-envelope me-2"></i>info@srtaco.com</p>
+                        <p><i class="fas fa-map-marker-alt me-2"></i>Av. Principal 123, Centro</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Horarios</h5>
+                        <p>Lunes - Domingo</p>
+                        <p>10:00 AM - 10:00 PM</p>
+                        <p><small>Delivery hasta las 11:00 PM</small></p>
+                    </div>
+                </div>
+                <hr class="my-4">
+                <div class="text-center">
+                    <p>&copy; 2024 Sr.Taco. Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Modales CRUD -->
+    <!-- Modal Trabajador -->
+    <div class="modal fade" id="trabajadorModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="trabajadorModalTitle">Agregar Trabajador</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="trabajadorForm">
+                        <input type="hidden" id="trabajador_user_id">
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <label class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="trabajador_nombre_t" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Apellido Paterno</label>
+                                <input type="text" class="form-control" id="trabajador_apellido_p" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Apellido Materno</label>
+                                <input type="text" class="form-control" id="trabajador_apellido_m" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Puesto</label>
+                                <input type="text" class="form-control" id="trabajador_puesto" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Fecha de Nacimiento</label>
+                                <input type="date" class="form-control" id="trabajador_fecha_nacimiento">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Contraseña</label>
+                                <input type="password" class="form-control" id="trabajador_contrasena" required>
+                            </div>
+                            <div class="col-12">
+                                <h6>Documentos</h6>
+                                <div class="row g-2">
+                                    <div class="col-md-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="trabajador_curp">
+                                            <label class="form-check-label">CURP</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="trabajador_acta_nacimiento">
+                                            <label class="form-check-label">Acta de Nacimiento</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="trabajador_ine">
+                                            <label class="form-check-label">INE</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="trabajador_constancia_sf">
+                                            <label class="form-check-label">Constancia SF</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="trabajador_constancia_ht">
+                                            <label class="form-check-label">Constancia HT</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="trabajador_fotos">
+                                            <label class="form-check-label">Fotos</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="trabajador_uniforme">
+                                            <label class="form-check-label">Uniforme</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="trabajador_correo">
+                                            <label class="form-check-label">Correo</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="trabajador_numero">
+                                            <label class="form-check-label">Número</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="saveTrabajador">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Almacén -->
+    <div class="modal fade" id="almacenModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="almacenModalTitle">Agregar Producto</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="almacenForm">
+                        <input type="hidden" id="almacen_producto_id">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Nombre del Producto</label>
+                                <input type="text" class="form-control" id="almacen_nombre_a" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Unidades</label>
+                                <input type="number" step="0.01" class="form-control" id="almacen_unidades" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Tipo</label>
+                                <input type="text" class="form-control" id="almacen_tipo" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Responsable</label>
+                                <input type="text" class="form-control" id="almacen_responsable" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">ID Usuario Responsable</label>
+                                <select class="form-select" id="almacen_user_id" required>
+                                    <option value="">Seleccionar trabajador</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="saveAlmacen">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Gasto -->
+    <div class="modal fade" id="gastoModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="gastoModalTitle">Agregar Gasto</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="gastoForm">
+                        <input type="hidden" id="gasto_id">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Producto</label>
+                                <select class="form-select" id="gasto_producto_id" required>
+                                    <option value="">Seleccionar producto</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Nombre del Producto</label>
+                                <input type="text" class="form-control" id="gasto_nombre_a" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Unidades</label>
+                                <input type="number" class="form-control" id="gasto_unidades" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Costo</label>
+                                <input type="number" step="0.01" class="form-control" id="gasto_costo" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Fecha</label>
+                                <input type="date" class="form-control" id="gasto_fecha" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Tipo</label>
+                                <input type="text" class="form-control" id="gasto_tipo" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Responsable</label>
+                                <input type="text" class="form-control" id="gasto_responsable" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">ID Usuario Responsable</label>
+                                <select class="form-select" id="gasto_user_id" required>
+                                    <option value="">Seleccionar trabajador</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="saveGasto">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Asistencia -->
+    <div class="modal fade" id="asistenciaModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="asistenciaModalTitle">Registrar Asistencia</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="asistenciaForm">
+                        <input type="hidden" id="asistencia_id">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label class="form-label">Trabajador</label>
+                                <select class="form-select" id="asistencia_user_id" required>
+                                    <option value="">Seleccionar trabajador</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="asistencia_nombre_t" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Apellido</label>
+                                <input type="text" class="form-control" id="asistencia_apellido_p" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Fecha</label>
+                                <input type="date" class="form-control" id="asistencia_fecha" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Mes</label>
+                                <input type="text" class="form-control" id="asistencia_mes" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Hora de Entrada</label>
+                                <input type="time" class="form-control" id="asistencia_entrada" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Hora de Salida</label>
+                                <input type="time" class="form-control" id="asistencia_salida" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Retardo</label>
+                                <input type="text" class="form-control" id="asistencia_retardo" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Descuento</label>
+                                <input type="text" class="form-control" id="asistencia_descuento" required>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="saveAsistencia">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Pago -->
+    <div class="modal fade" id="pagoModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="pagoModalTitle">Registrar Pago</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="pagoForm">
+                        <input type="hidden" id="pago_id">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label class="form-label">Trabajador</label>
+                                <select class="form-select" id="pago_user_id" required>
+                                    <option value="">Seleccionar trabajador</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="pago_nombre_t" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Puesto</label>
+                                <input type="text" class="form-control" id="pago_puesto" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Monto del Pago</label>
+                                <input type="text" class="form-control" id="pago_pago" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Mes</label>
+                                <input type="text" class="form-control" id="pago_mes" required>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="pago_pagado">
+                                    <label class="form-check-label">Pagado</label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="savePago">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Horario -->
+    <div class="modal fade" id="horarioModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="horarioModalTitle">Crear Horario</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="horarioForm">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label class="form-label">Trabajador</label>
+                                <select class="form-select" id="horario_user" required>
+                                    <option value="">Seleccionar trabajador</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="horario_nombre_t" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Lunes</label>
+                                <input type="text" class="form-control" id="horario_lunes" placeholder="ej: 8:00-16:00 o Descanso">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Martes</label>
+                                <input type="text" class="form-control" id="horario_martes" placeholder="ej: 8:00-16:00 o Descanso">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Miércoles</label>
+                                <input type="text" class="form-control" id="horario_miercoles" placeholder="ej: 8:00-16:00 o Descanso">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Jueves</label>
+                                <input type="text" class="form-control" id="horario_jueves" placeholder="ej: 8:00-16:00 o Descanso">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Viernes</label>
+                                <input type="text" class="form-control" id="horario_viernes" placeholder="ej: 8:00-16:00 o Descanso">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Sábado</label>
+                                <input type="text" class="form-control" id="horario_sabado" placeholder="ej: 8:00-16:00 o Descanso">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Domingo</label>
+                                <input type="text" class="form-control" id="horario_domingo" placeholder="ej: 8:00-16:00 o Descanso">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="saveHorario">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Tarea -->
+    <div class="modal fade" id="tareaModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="tareaModalTitle">Asignar Tarea</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="tareaForm">
+                        <input type="hidden" id="tarea_id">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label class="form-label">Trabajador</label>
+                                <select class="form-select" id="tarea_user_id" required>
+                                    <option value="">Seleccionar trabajador</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="tarea_nombre_t" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Puesto</label>
+                                <input type="text" class="form-control" id="tarea_puesto" required>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Descripción de la Tarea</label>
+                                <textarea class="form-control" id="tarea_tarea" rows="3" required></textarea>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Turno</label>
+                                <select class="form-select" id="tarea_turno" required>
+                                    <option value="">Seleccionar turno</option>
+                                    <option value="Matutino">Matutino</option>
+                                    <option value="Vespertino">Vespertino</option>
+                                    <option value="Nocturno">Nocturno</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-check mt-4">
+                                    <input class="form-check-input" type="checkbox" id="tarea_realizado">
+                                    <label class="form-check-label">Realizado</label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="saveTarea">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Cliente -->
+    <div class="modal fade" id="clienteModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="clienteModalTitle">Agregar Cliente</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="clienteForm">
+                        <input type="hidden" id="cliente_id">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="cliente_nombre" required>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Número</label>
+                                <input type="number" class="form-control" id="cliente_numero" required>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Contraseña</label>
+                                <input type="password" class="form-control" id="cliente_contrasena" required>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="saveCliente">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Menu -->
+    <div class="modal fade" id="menuModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="menuModalTitle">Agregar Producto al Menú</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="menuForm">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">ID Producto</label>
+                                <input type="number" class="form-control" id="menu_producto_id" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="menu_nombre_m" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Precio</label>
+                                <input type="text" class="form-control" id="menu_precio" required>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Descripción</label>
+                                <textarea class="form-control" id="menu_descripcion" rows="2" required></textarea>
+                            </div>
+                            <div class="col-12">
+                                <h6>Ingredientes Disponibles</h6>
+                                <div class="row g-2">
+                                    <div class="col-md-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="menu_tortilla_maiz">
+                                            <label class="form-check-label">Tortilla de Maíz</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="menu_tortilla_harina">
+                                            <label class="form-check-label">Tortilla de Harina</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="menu_cemita">
+                                            <label class="form-check-label">Cemita</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="menu_aguacate">
+                                            <label class="form-check-label">Aguacate</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="menu_carne_res">
+                                            <label class="form-check-label">Carne de Res</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="menu_carne_puerco">
+                                            <label class="form-check-label">Carne de Puerco</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="menu_longaniza">
+                                            <label class="form-check-label">Longaniza</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="menu_cecina">
+                                            <label class="form-check-label">Cecina</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="menu_chorizo_argentino">
+                                            <label class="form-check-label">Chorizo Argentino</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="menu_chicharron">
+                                            <label class="form-check-label">Chicharrón</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="menu_salsa_quemada">
+                                            <label class="form-check-label">Salsa Quemada</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="menu_chimichurri">
+                                            <label class="form-check-label">Chimichurri</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="menu_cacahuate">
+                                            <label class="form-check-label">Cacahuate</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="menu_papas">
+                                            <label class="form-check-label">Papas</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="menu_mayonesa">
+                                            <label class="form-check-label">Mayonesa</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="menu_pico_gallo">
+                                            <label class="form-check-label">Pico de Gallo</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="menu_crema_acida">
+                                            <label class="form-check-label">Crema Ácida</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="menu_rajas_crema">
+                                            <label class="form-check-label">Rajas con Crema</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="saveMenu">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Venta -->
+    <div class="modal fade" id="ventaModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="ventaModalTitle">Registrar Venta</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="ventaForm">
+                        <input type="hidden" id="venta_id">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label class="form-label">ID Producto</label>
+                                <input type="number" class="form-control" id="venta_producto_id" required>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Nombre del Producto</label>
+                                <input type="text" class="form-control" id="venta_nombre_m" required>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Precio</label>
+                                <input type="text" class="form-control" id="venta_precio" required>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">ID Cliente</label>
+                                <select class="form-select" id="venta_cliente_id" required>
+                                    <option value="">Seleccionar cliente</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="saveVenta">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Confirmar Eliminación -->
+    <div class="modal fade" id="deleteModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title">Confirmar Eliminación</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>¿Estás seguro de que deseas eliminar este registro?</p>
+                    <p class="text-muted">Esta acción no se puede deshacer.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger" id="confirmDelete">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
